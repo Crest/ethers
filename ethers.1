@@ -1,0 +1,79 @@
+.Dd Nov 15, 2024
+.Dt ETHERS 1
+.Os
+.Sh NAME
+.Nm ethers
+.Nd Lookup or allocate hostname to MAC address mappings
+
+.\"
+.\"
+.\"
+.Sh SYNOPSIS
+.Nm
+.Op Fl h
+.Op Fl q
+.Op Fl v
+.Op Fl f Ar <file>
+.Op Fl m Ar <min>
+.Op Fl M Ar <max>
+.Op Ar <host> ...
+.\"
+.\"
+.\"
+.Sh DESCRIPTION
+The
+.Nm
+command looks up hostname to MAC address mappings in an
+.Xr ethers 5
+file. Hostnames not (yet) mapped to a MAC address
+are allocated mappings from the range [\c
+.Ar <min> ,
+.Ar <max> Ns
+].
+Newly allocated mappings are appended to the end of the file.
+
+Structured output to standard output is provided by
+.Xr libxo 3 Ns
+\&. The standard error output remains unstructured.
+
+If persistence is required the user must check the exit status before
+using returned mappings.
+
+The following option are available:
+.Bl -tag -width flag
+.It Fl h
+Print the usage message and exit.
+.It Fl q
+Quiet warning messages.
+.It Fl v
+Emit verbose output (decoded CLI arguments, all parsed lines).
+.It Fl f Ar <file>
+The
+.Xr ethers 5
+file to use, defaults to
+.Pa /etc/ethers Ns
+\&.
+.It Fl m Ar <min>
+The minimum MAC address to consider for allocation.
+.It Fl M Ar <max>
+The maximum MAC address to consider for allocation.
+.It Op Ar <host> ...
+The list of hostnames to lookup and allocate.
+.El
+.\"
+.\"
+.\"
+.Sh EXIT STATUS
+.Ex -std
+.\"
+.\"
+.\"
+.Sh SEE ALSO
+.Xr ethers 5 ,
+.Xr getent 1
+.\"
+.\"
+.\"
+.Sh AUTHORS
+This manual page was written by
+.An Jan Bramkamp Aq crest+ethers@rlwinm.de .
