@@ -17,7 +17,7 @@ static_assert(true); // Workaround for https://github.com/clangd/clangd/issues/1
 // If used like this they're **EXPECTED** to break break the build,
 // but they're also useful for catching errors.
 // Use `make debug` to build with these diagnostics.
-#ifdef DRACONIC
+#ifdef RACONIC
 #pragma clang diagnostic error   "-Weverything"
 #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
@@ -106,7 +106,7 @@ allocator_alloc(const struct allocator allocator, struct ether_addr addr[const s
 		return false;
 	} else {
 		const size_t bit = (size_t)first;
-		bit_set(allocator.bitstring, first);
+		bit_set(allocator.bitstring, bit);
 		*addr = u64_to_addr(bit + allocator.offset);
 		return true;
 	}

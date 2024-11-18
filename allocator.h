@@ -3,8 +3,6 @@
 #ifndef ALLOCATOR_H
 #define ALLOCATOR_H
 
-#include <libxo/xo.h>
-
 #include <net/ethernet.h>
 #include <bitstring.h>
 #include <stdbool.h>
@@ -20,7 +18,7 @@ static_assert(true); // Workaround for https://github.com/clangd/clangd/issues/1
 // If used like this they're **EXPECTED** to break break the build,
 // but they're also useful for catching errors.
 // Use `make debug` to build with these diagnostics.
-#ifdef DRACONIC
+#ifdef RACONIC
 #pragma clang diagnostic error   "-Weverything"
 #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
