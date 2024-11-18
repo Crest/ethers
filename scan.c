@@ -5,6 +5,7 @@
 #include <limits.h>
 
 #include "slice.h"
+#include "scan.h"
 
 #if __STDC_VERSION__ >= 202311L
 static_assert(true); // Workaround for https://github.com/clangd/clangd/issues/1167
@@ -17,7 +18,7 @@ static_assert(true); // Workaround for https://github.com/clangd/clangd/issues/1
 // If used like this they're **EXPECTED** to break break the build,
 // but they're also useful for catching errors.
 // Use `make debug` to build with these diagnostics.
-#ifdef DRACONIC
+#ifdef RACONIC
 #pragma clang diagnostic error   "-Weverything"
 #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
@@ -55,7 +56,7 @@ scan_hexdigit(struct valid input, uint8_t *_Nonnull const restrict nibble)
 	if (input.start >= input.end) {
 		return none;
 	}
-	const uint8_t digit     = *input.start;
+	const uint8_t digit     = *(const uint8_t *)input.start;
 	const uint8_t substract = allowed[digit];
 	if (substract == 0) {
 		return none;
