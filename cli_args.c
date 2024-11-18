@@ -6,7 +6,6 @@
 #include <sysexits.h>
 #include <unistd.h>
 
-#include "slice.h"
 #include "scan.h"
 #include "cli_args.h"
 
@@ -21,7 +20,7 @@ static_assert(true); // Workaround for https://github.com/clangd/clangd/issues/1
 // If used like this they're **EXPECTED** to break break the build,
 // but they're also useful for catching errors.
 // Use `make debug` to build with these diagnostics.
-#ifdef DRACONIC
+#ifdef RACONIC
 #pragma clang diagnostic error   "-Weverything"
 #pragma clang diagnostic ignored "-Wunsafe-buffer-usage"
 #pragma clang diagnostic ignored "-Wdeclaration-after-statement"
@@ -184,11 +183,11 @@ struct cli_args
 parse_cli_args(int argc, char **argv)
 {
 	// Start with the default values.
-	static const char *_Nonnull const empty = "";
+	static const char *_Nonnull const empty_name = "";
 	static const char ethers_path[] = ETHERS_PATH;
 	struct cli_args args = {
-		.names_start = &empty,
-		.names_end   = &empty,
+		.names_start = &empty_name,
+		.names_end   = &empty_name,
 		.ethers_path = ethers_path,
 		.min_mac     = { .octet = { 0x02, 0x00, 0x00, 0x00, 0x00, 0x00 } },
 		.max_mac     = { .octet = { 0x02, 0x00, 0xff, 0xff, 0xff, 0xff } },
