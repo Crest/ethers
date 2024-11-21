@@ -6,7 +6,8 @@ PREFIX?=		/usr/local
 
 # Infer $BINDIR and DEBUGFILEDIR.
 BINDIR?=		$(PREFIX)/bin
-DEBUGFILEDIR=		$(PREFIX)/lib/debug/bin
+DEBUGFILEDIR?=		$(PREFIX)/lib/debug/bin
+SHAREDIR?=              $(PREFIX)/share
 
 # Newer C standards aren't supported by the system compiler on FreeBSD 14.1.
 CSTD=			c17
